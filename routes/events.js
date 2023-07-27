@@ -16,27 +16,22 @@ const router = Router()
 
 router.use(validarJWT)
 
-//Obtener Eventos
-router.get(
-  '/',
+// Obtener eventos
+router.get('/', getEventos)
 
-  getEventos
-)
-
-//Crear un nuevo Evento
+// Crear un nuevo evento
 router.post(
   '/',
   [
     check('title', 'El titulo es obligatorio').not().isEmpty(),
-
-    check('start', 'La fecha de inicio es obligatorio').custom(isDate),
-    check('end', 'La fecha de fin es obligatorio').not().isEmpty(),
+    check('start', 'Fecha de inicio es obligatoria').custom(isDate),
+    check('end', 'Fecha de finalización es obligatoria').custom(isDate),
     validarCampos,
   ],
   crearEvento
 )
 
-//Actualizar Evento
+// Actualizar Evento
 router.put(
   '/:id',
   [
@@ -48,7 +43,7 @@ router.put(
   actualizarEvento
 )
 
-//Eliminar Evento
+// Borrar evento
 router.delete('/:id', eliminarEvento)
 
 module.exports = router

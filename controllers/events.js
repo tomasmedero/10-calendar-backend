@@ -51,7 +51,7 @@ const actualizarEvento = async (req, res = response) => {
     }
 
     if (evento.user.toString() !== uid) {
-      res.status(401).json({
+      return res.status(401).json({
         ok: false,
         msg: 'No puedes editar este evento',
       })
