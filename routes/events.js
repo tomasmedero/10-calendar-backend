@@ -19,6 +19,13 @@ router.use(validarJWT)
 //Obtener Eventos
 router.get(
   '/',
+
+  getEventos
+)
+
+//Crear un nuevo Evento
+router.post(
+  '/',
   [
     check('title', 'El titulo es obligatorio').not().isEmpty(),
 
@@ -26,11 +33,8 @@ router.get(
     check('end', 'La fecha de fin es obligatorio').not().isEmpty(),
     validarCampos,
   ],
-  getEventos
+  crearEvento
 )
-
-//Crear un nuevo Evento
-router.post('/', crearEvento)
 
 //Actualizar Evento
 router.put('/:id', actualizarEvento)
